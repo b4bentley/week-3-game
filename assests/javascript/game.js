@@ -8,8 +8,6 @@ var starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p',
 
 var guessed = [];
 
-var reset = [];
-
 var theme = ["cinderella","gladiator","tangled","frozen","watchman","hancock", "wanted", "titanic", "aladdin"];
 
 // create intial random choice among theme array
@@ -47,9 +45,9 @@ if(misses == 0 ){
 // 
 document.onkeypress = function(event){
 
-	var characterCode = event.charCode;
+	// var characterCode = event.charCode;
 
-	var choice = String.fromCharCode(characterCode);
+	var choice = String.fromCharCode(event.charCode);
 
 	for (var i=0;i<initial.length;i++){
 		// check to see if the user choice is part of the alphabet
@@ -94,6 +92,7 @@ document.onkeypress = function(event){
 								document.querySelector('#wins').innerHTML = winsUpdate;
 
 								resetgame();
+								
 							}
 
 						}
@@ -135,6 +134,7 @@ document.onkeypress = function(event){
 	// console.log("Letter pressed: " + choice);
 	// console.log("letters left in starting: "+ starting);
 	// console.log("letters in guessed: "+ guessed);
+}
 
 	function resetgame(){
 		misses = 10;
@@ -164,7 +164,6 @@ document.onkeypress = function(event){
 		}
 		choosenWord = choosenWord + "</div>";
 		// choosenWord = "<div>"+ blankWord + "</div>";
-		document.querySelector('#word').innerHTML = choosenWord;		
-
+		document.querySelector('#word').innerHTML = choosenWord;
+	
 	}
-}
