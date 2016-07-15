@@ -1,9 +1,9 @@
 html, body{
-	background-image:url('../../hangman.jpg');
+	background-image:url('../../assests/images/hangman.jpg');
 
 	height: 100%;
 	text-align: center;
-	color: white;
+	color: grey;
 }
 
 .container{
