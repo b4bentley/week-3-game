@@ -42,19 +42,19 @@ window.onkeypress = function(event){
 				wins ++;
 				document.getElementById("wins").innerHTML = "Wins :" + wins;
 				if(word == "avatar"){
-									var aa = new Audio("date.mp3");
+									var aa = new Audio("assests/sound/date.mp3");
 				     				aa.play();
 				}
 				if(word == "gladiator"){
-									var aa = new Audio("together.mp3");
+									var aa = new Audio("assests/sound/together.mp3");
 				     				aa.play();
 				}
 				if(word == "aliens"){
-									var aa = new Audio("getaway.mp3");
+									var aa = new Audio("assests/sound/getaway.mp3");
 				     				aa.play();
 				}
 				if(word == "tombstone"){
-									var aa = new Audio("cosmopolitan.wav");
+									var aa = new Audio("assests/sound/cosmopolitan.wav");
 				     				aa.play();
 				}
 
