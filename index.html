@@ -8,20 +8,50 @@
 
 	<!-- sylessheets -->
 	<link rel="stylesheet" type="text/css" href="assests/css/reset.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
 	<link rel="stylesheet" type="text/css" href="assests/css/style.css">
 
+
+	
 
 
 
 </head>
 <body>
-	<div>Hangman - Famous movies</div>
-	<div>Please press any key to get started.</div>
-	<div id = "wins">Wins : </div>
-	<div>current word</div>
-	<div id="wordDiv"></div>
-	<div id="guesses">Number of Guess Left : 10</div>
-	<div id="letters">Letters already used : </div>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 content">Hangman - Famous movies</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 content">Please press any key to get started.</div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col-md-offset-4 content" id = "wins">Wins : </div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col-md-offset-4 content">current word</div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col-md-offset-4 content" id="wordDiv"></div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col-md-offset-4 content"  id="guesses">Number of Guess Left : 10</div>
+	</div>
+	<div class="row">	
+		<div class="col-md-4 col-md-offset-4 content" id="letters">Letters already used : </div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 content"><button type="button" class="btn btn-primary" id="help" onclick="musicSelection()">Help?</button></div>
+	</div>
+
+</div>	
 
 	<!-- javascript -->
 	<script type="text/javascript" src="assests/javascript/game.js"></script>

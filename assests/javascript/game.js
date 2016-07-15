@@ -1,7 +1,7 @@
 var wins =0;
 var numOfGuesses =10;
 var lettersGuessed = [];
-var theme = ["cinderella","gladiator","tangled","frozen","watchman","hancock", "wanted", "titanic", "aladdin"];
+var theme = ["gladiator","aliens","avatar", "tombstone"];
 var starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var word;
 var currentWord=[];
@@ -41,10 +41,34 @@ window.onkeypress = function(event){
 			if(a<0){
 				wins ++;
 				document.getElementById("wins").innerHTML = "Wins :" + wins;
+				if(word == "avatar"){
+									var aa = new Audio("date.mp3");
+				     				aa.play();
+				}
+				if(word == "gladiator"){
+									var aa = new Audio("together.mp3");
+				     				aa.play();
+				}
+				if(word == "aliens"){
+									var aa = new Audio("getaway.mp3");
+				     				aa.play();
+				}
+				if(word == "tombstone"){
+									var aa = new Audio("blood.mp3");
+				     				aa.play();
+				}
+
+
+
+
+
 
 				resetGame();
 				document.getElementById("guesses").innerHTML = "Number of Guesses Left : " + (numOfGuesses);
 				document.getElementById("letters").innerHTML = "Letters already used :";
+				
+
+
 			}
 
 		}else{
@@ -92,4 +116,14 @@ function createWord() {
 
 	document.getElementById("wordDiv").innerHTML = newCurrentWord;
 
+}
+
+function musicSelection(){
+	var aa = new Audio("date.mp3");
+     aa.play();
+
+	// if(word == avatar){
+	// var aa = new Audio("date.mp3");
+ //    aa.play();
+	// }
 }
