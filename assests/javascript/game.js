@@ -54,21 +54,14 @@ window.onkeypress = function(event){
 				     				aa.play();
 				}
 				if(word == "tombstone"){
-									var aa = new Audio("blood.mp3");
+									var aa = new Audio("cosmopolitan.wav");
 				     				aa.play();
 				}
-
-
-
-
-
 
 				resetGame();
 				document.getElementById("guesses").innerHTML = "Number of Guesses Left : " + (numOfGuesses);
 				document.getElementById("letters").innerHTML = "Letters already used :";
-				
-
-
+	
 			}
 
 		}else{
@@ -116,14 +109,4 @@ function createWord() {
 
 	document.getElementById("wordDiv").innerHTML = newCurrentWord;
 
-}
-
-function musicSelection(){
-	var aa = new Audio("date.mp3");
-     aa.play();
-
-	// if(word == avatar){
-	// var aa = new Audio("date.mp3");
- //    aa.play();
-	// }
 }
