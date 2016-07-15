@@ -1,169 +1,95 @@
-var wins = 0;
-
-var misses = 0;
-
-var initial = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-var starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-
-var guessed = [];
-
+var wins =0;
+var numOfGuesses =10;
+var lettersGuessed = [];
 var theme = ["cinderella","gladiator","tangled","frozen","watchman","hancock", "wanted", "titanic", "aladdin"];
-
-// create intial random choice among theme array
-if(misses == 0 ){
-	misses = 10;
-	var themeLength = theme.length;
-	var ran = Math.floor((Math.random() * themeLength));
-	var word = [theme[ran]];
-
-	console.log(word[0]);
-	}
-
-	// parse the random theme into characters
-	var wordSplit = [];
-	var blankWord = [];
-
-	for(var i =0; i<word[0].length; i++){
-		var j = word[0].charAt(i);
-		wordSplit.push(j);
-		blankWord.push("_");
-	}
-	// show the intial word
-	console.log(wordSplit);
-	var choosenWord = "<div>";
-
-	for(var i =0; i<wordSplit.length; i++){
-		choosenWord= choosenWord + blankWord[i] + " ";
-	}
-	choosenWord = choosenWord + "</div>";
-	document.querySelector('#word').innerHTML = choosenWord;
+var starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var word;
+var currentWord=[];
 
 
-// Where all the magic happens
-// 
-// 
-document.onkeypress = function(event){
+if(numOfGuesses ==10){
+	createWord();
+}
 
-	// var characterCode = event.charCode;
+window.onkeypress = function(event){
+	console.log("a key was selected");
 
-	var choice = String.fromCharCode(event.charCode);
+	//user selected key
+	var userChoice = String.fromCharCode(event.keyCode);
 
-	for (var i=0;i<initial.length;i++){
-		// check to see if the user choice is part of the alphabet
-		if (choice==initial[i]){
-			// console.log("made it to second for loop");
+	if(lettersGuessed.includes(userChoice)){
+		alert("Letter has been selected already")
+	} else if(starting.includes(userChoice)==false){
+		alert("not a valid character");
+	}else{
+		if(word.includes(userChoice)){
+			//we need to update currentword and check to see if you win
 
-			// check to see if the keypressed has been selected
-			for(var j=0;j<initial.length;j++){
-				if (choice == starting[j]) {
-					guessed.push(choice);
-					var selected = "<div>Letters already used:"+ guessed + " </div>";
-					document.querySelector('#letters').innerHTML = selected;
-
-					starting.splice(j,1);
-
-					var choiceToChar = choice.charAt(0);
-					console.log(choiceToChar);
-					var missTracker = 0;
-
-					// check to see if the key was a hit and win
-					for(var k = 0; k<wordSplit.length;k++){
-						if (wordSplit[k] == choiceToChar) {
-							missTracker = 100;
-							console.log("hit");
-
-							blankWord[k] = choiceToChar;
-
-							choosenWord = "<div>";
-
-							for(var i =0; i<wordSplit.length; i++){
-								choosenWord= choosenWord + blankWord[i] + " ";
-							}
-							choosenWord = choosenWord + "</div>";
-							document.querySelector('#word').innerHTML = choosenWord;
-
-							// see if you won
-							var a = blankWord.indexOf("_");
-							console.log(a);
-							if (a<0){
-								wins++;
-								winsUpdate = "<div>Wins: "+ wins + "</div>";
-								document.querySelector('#wins').innerHTML = winsUpdate;
-
-								resetgame();
-								
-							}
-
-						}
-
-					}
-
-					//change misses if no hits
-					if (missTracker == 0){
-						misses--;
-						missTracker = 0;
-						// console.log("misses: " + misses);
-						
-						if (misses == 0) {
-							
-							resetgame();
-
-						}
-
-						var miss = "<div>Number of Guesses Left: "+ misses + " </div>";
-						document.querySelector('#guesses').innerHTML = miss;
-
-						
-
-					}else{
-						missTracker = 0;
-					}
-
-				}else{
-					// do nothing
+			for(var i =0; i< word.split("").length;i++){
+				if(word[i] == userChoice.charAt(0)){
+					currentWord[i]= userChoice;
 				}
 			}
 
-		}else{
-			// the right button was not selected
-			// console.log("wrong button " + initial[i]);
-		}
-	}
+			document.getElementById("wordDiv").innerHTML = currentWord.join(" ");
 
-	// console.log("Letter pressed: " + choice);
-	// console.log("letters left in starting: "+ starting);
-	// console.log("letters in guessed: "+ guessed);
+			lettersGuessed.push(userChoice);
+			//retrun letters guessed as a string
+			document.getElementById("letters").innerHTML = "Letters already used :" + lettersGuessed.join();
+
+			var a =currentWord.indexOf(" _ ");
+			if(a<0){
+				wins ++;
+				document.getElementById("wins").innerHTML = "Wins :" + wins;
+
+				resetGame();
+				document.getElementById("guesses").innerHTML = "Number of Guesses Left : " + (numOfGuesses);
+				document.getElementById("letters").innerHTML = "Letters already used :";
+			}
+
+		}else{
+			
+			document.getElementById("guesses").innerHTML = "Number of Guesses Left : " + (--numOfGuesses);
+
+			if(numOfGuesses == 0){
+				resetGame();
+				document.getElementById("guesses").innerHTML = "Number of Guesses Left : " + (numOfGuesses);
+				document.getElementById("letters").innerHTML = "Letters already used :";
+
+			}else{
+			lettersGuessed.push(userChoice);
+			//retrun letters guessed as a string
+			document.getElementById("letters").innerHTML = "Letters already used :" + lettersGuessed.join();
+
+			}
+		}		
+	}
 }
 
-	function resetgame(){
-		misses = 10;
-		var themeLength = theme.length;
-		var ran = Math.floor((Math.random() * themeLength));
-		var word = [theme[ran]];
-		console.log(word[0]);
+function resetGame(){
+	console.log("resetGame");
+	lettersGuessed.length =0;
+	currentWord.length =0;
+	createWord();
+	numOfGuesses=10;
 
-		starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-		guessed.length = 0;
-		// parse the random theme into characters
-		wordSplit = [];
-		blankWord.length = 0;
+}
 
-		for(var i =0; i<word[0].length; i++){
-			var j = word[0].charAt(i);
-			wordSplit.push(j);
-			blankWord.push("_")
-		}
-		console.log(wordSplit);
+function createWord() {
+	//create random word from theme
+	var themeLength = theme.length;
+	var ran = Math.floor((Math.random() * themeLength));
+	word = theme[ran];
+	console.log(word);
 
-
-		choosenWord = "<div>";
-
-		for(var i =0; i<wordSplit.length; i++){
-			choosenWord= choosenWord + blankWord[i] + " ";
-		}
-		choosenWord = choosenWord + "</div>";
-		// choosenWord = "<div>"+ blankWord + "</div>";
-		document.querySelector('#word').innerHTML = choosenWord;
-	
+	//set word to current word to display on screen
+	var newCurrentWord="";
+	for(var i=0; i<word.split("").length; i++){
+		currentWord.push(" _ ");
+		newCurrentWord+= currentWord[i];
 	}
+	console.log(currentWord);
+
+	document.getElementById("wordDiv").innerHTML = newCurrentWord;
+
+}
