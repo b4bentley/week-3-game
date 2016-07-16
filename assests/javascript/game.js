@@ -5,8 +5,12 @@ var theme = ["gladiator","aliens","avatar", "tombstone"];
 var starting = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 var word;
 var currentWord=[];
-
-
+var date = new Audio("assests/sound/date.mp3");
+var together = new Audio("assests/sound/together.mp3");
+var getaway = new Audio("assests/sound/getaway.mp3");
+var cosmopolitan = new Audio("assests/sound/cosmopolitan.wav");
+				     				
+				     				
 if(numOfGuesses ==10){
 	createWord();
 }
@@ -42,20 +46,16 @@ window.onkeypress = function(event){
 				wins ++;
 				document.getElementById("wins").innerHTML = "Wins :" + wins;
 				if(word == "avatar"){
-									var aa = new Audio("assests/sound/date.mp3");
-				     				aa.play();
+									date.play();
 				}
 				if(word == "gladiator"){
-									var aa = new Audio("assests/sound/together.mp3");
-				     				aa.play();
+									together.play();
 				}
 				if(word == "aliens"){
-									var aa = new Audio("assests/sound/getaway.mp3");
-				     				aa.play();
+									getaway.play();
 				}
 				if(word == "tombstone"){
-									var aa = new Audio("assests/sound/cosmopolitan.wav");
-				     				aa.play();
+									cosmopolitan.play();
 				}
 
 				resetGame();
@@ -89,7 +89,6 @@ function resetGame(){
 	currentWord.length =0;
 	createWord();
 	numOfGuesses=10;
-
 }
 
 function createWord() {
@@ -108,5 +107,4 @@ function createWord() {
 	console.log(currentWord);
 
 	document.getElementById("wordDiv").innerHTML = newCurrentWord;
-
 }
